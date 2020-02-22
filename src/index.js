@@ -2,12 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import Cookies from "js-cookie";
 
 import "./index.css";
 import store from "./store";
+import { userLoggedIn } from "./store/actions/user";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "semantic-ui-css/semantic.min.css";
+
+const user = JSON.parse(Cookies.get("userinfo"));
+if (user) {
+  store.dispatch(userLoggedIn(user));
+}
 
 ReactDOM.render(
   <BrowserRouter>

@@ -11,9 +11,12 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-    if (username === "debuser" && password === "password") {
+    if (username === "user" && password === "password") {
+      const credentials = {
+        user_name: "prakash"
+      };
       dispatch(
-        loginAction(() => {
+        loginAction(credentials, () => {
           history.push("/home");
         })
       );
