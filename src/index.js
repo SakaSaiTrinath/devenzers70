@@ -11,9 +11,12 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "semantic-ui-css/semantic.min.css";
 
-const user = JSON.parse(Cookies.get("userinfo"));
-if (user) {
-  store.dispatch(userLoggedIn(user));
+const userinfo = Cookies.get("userinfo");
+if (userinfo) {
+  const user = JSON.parse(userinfo);
+  if (user) {
+    store.dispatch(userLoggedIn(user));
+  }
 }
 
 ReactDOM.render(

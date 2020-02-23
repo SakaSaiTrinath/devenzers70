@@ -5,11 +5,22 @@ import { Route, Redirect } from "react-router-dom";
 
 const UserRoute = ({ component: Component, ...rest }) => {
   const isAuthenticated = useSelector(state => !!state.user.token);
+  const user = useSelector(state => state.user);
   return (
     <Route
       {...rest}
       render={props =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/" />
+        isAuthenticated ? (
+          (user && user.server === "devenger" && <Component {...props} />) ||
+          (user && user.server === "bank_server_2" && (
+            <Redirect to="/bankhome" />
+          )) ||
+          (user && user.server === "bank_server_1" && (
+            <Redirect to="/bank2home" />
+          ))
+        ) : (
+          <Redirect to="/" />
+        )
       }
     />
   );
