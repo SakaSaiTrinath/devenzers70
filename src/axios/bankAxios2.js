@@ -2,8 +2,8 @@ import axios from "axios";
 require("dotenv").config();
 
 const axiosInstance = axios.create({
-  baseURL: "http://10.104.3.24:5007/"
-  // baseURL: "http://vampboy-backend:5005"
+  // baseURL: "http://10.104.3.24:5007/"
+  baseURL: "http://vampboy-backend:5007/"
 });
 
 axiosInstance.interceptors.response.use(
